@@ -1,0 +1,126 @@
+*,*::after,*::before{
+    box-sizing:border-box ;
+    margin: 0;
+    padding: 0;
+}
+:root{
+    --bg-color:black;
+    --white-color:#fff;
+    --widht:100px;
+    --height:100px;
+    --hv-color:rgb(138, 136, 136);
+}
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background-color: var(--bg-color);
+}
+.cells{
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+    
+}
+.cell{
+    border: 2px solid var(--white-color);
+    width: var(--widht);
+    height: var(--height);
+    color: var(--white-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  position: relative;
+}
+.cell:nth-child(1),.cell:nth-child(2),.cell:nth-child(3){
+    border-top: none;
+}
+.cell:nth-child(7),.cell:nth-child(8),.cell:nth-child(9){
+    border-bottom: none;
+}
+.cell:nth-child(3n+1){
+    border-left: none;
+}
+.cell:nth-child(3n+3){
+    border-right: none;
+}
+
+
+.cell.cross::after,.cell.cross::before,.cross .cell:not(.circle,.cross):hover:after,.cross .cell:not(.circle,.cross):hover::before{
+ content: '';
+ width: calc(var(--widht)*.1);
+ height: calc(var(--height)*.7);
+ position: absolute;
+ background-color: var(--white-color);
+ cursor: default;
+}
+.cross  .cell:not(.circle,.cross):hover:after{
+background-color: var(--hv-color);
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+.cross .cell:not(.circle,.cross):hover::before{
+    background-color: var(--hv-color);
+    transform: rotate(-45deg);
+    cursor: pointer;
+
+}
+
+.cell.cross::after{
+    transform: rotate(45deg);
+}
+.cell.cross::before{
+    transform: rotate(-45deg);
+}
+
+.cell.circle::before,.circle .cell:not(.circle,.cross):hover::before {
+    content: '';
+   border-radius:50% ;
+   width:calc(var(--widht)*.7);
+   height: calc(var(--height)*.7);
+    position: absolute;
+    background-color: var(--white-color);
+   }
+
+.cell.circle::after,.circle .cell:not(.circle,.cross):hover::after{
+    content: '';
+    background-color: var(--bg-color);
+    position: absolute;
+    border-radius:50%;
+    width:calc(var(--widht)*.5);
+    height: calc(var(--height)*.5);
+}
+.circle .cell:not(.circle,.cross):hover::before{
+    background-color: var(--hv-color);
+    cursor: pointer;
+}
+
+.end{
+    position: fixed;
+    background-color: rgba(0, 0,0,0.5);
+    width: 100vw;
+    height: 100vh;
+    /* display: flex; */
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    display: none;
+}
+.endtext{
+    font-size: 5em;
+    color: var(--white-color);
+    margin-bottom: 10px;
+    margin-top: 80px;
+}
+.reset{
+    outline: 0;
+    border: 0;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    margin-bottom: 90px;
+    background-color: var(--white-color);
+    border-radius: 10px;
+    cursor: pointer;
+}
